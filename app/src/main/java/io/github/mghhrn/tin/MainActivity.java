@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         phoneNumberEditText = this.findViewById(R.id.phone_number_edit_text);
     }
 
-    public void onLoginButtonPressed() {
+    private void onLoginButtonPressed() {
         String cellphone = phoneNumberEditText.getText().toString();
         if (cellphone == null || cellphone.length() != 11) {
             Toast.makeText(this, R.string.invalid_phone_number, Toast.LENGTH_SHORT).show();
@@ -55,10 +55,13 @@ public class MainActivity extends AppCompatActivity {
         LoginDto loginDto = new LoginDto(cellphone);
         Call<Void> call = backendService.login(loginDto);
         call.enqueue(new Callback<Void>() {
-            Context context = getContext();
+            private Context context = getContext();
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Toast.makeText(context, "Request was sucessful!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Request was successful!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, SmsVerificationActivity.class);
+                intent.putExtra("cellphone", cellphone);
+                startActivity(intent);
             }
 
             @Override

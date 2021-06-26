@@ -71,7 +71,7 @@
 					android:layout_marginTop="68dp"
 					app:layout_constraintLeft_toLeftOf="parent"
 					app:layout_constraintRight_toRightOf="parent"
-					app:layout_constraintTop_toBottomOf="@+id/welcom_back_log_in_text_view"
+					app:layout_constraintTop_toBottomOf="@+id/sms_verification_description"
 					tools:layout_editor_absoluteX="40dp"
 					tools:layout_editor_absoluteY="123dp">
 
@@ -121,7 +121,7 @@
 							android:layout_marginTop="23dp"
 							android:background="#00000000"
 							android:gravity="start|center_vertical"
-							android:hint="09..."
+							android:hint=""
 							android:inputType="phone"
 							android:maxLines="1"
 							android:textColor="#19224C"

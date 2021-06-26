@@ -27,8 +27,8 @@ public class SmsVerificationActivity extends AppCompatActivity {
     private String userCellphone;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.sms_verification_view);
         userCellphone = getIntent().getExtras().getString("cellphone");
         init();

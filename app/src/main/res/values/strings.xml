@@ -1,11 +1,16 @@
 <resources>
 
-	<!-- Project level resources -->
-	<string name="app_name">Shenava</string>
+    <!-- Project level resources -->
+    <string name="app_name">Shenava</string>
 
-	<!-- Resources for Bank2LogInActivity -->
-	<string name="don_t_have_an_account_sign_up">Don’t have an account? Sign Up</string>
-	<string name="welcom_login_below_with_phone">Welcome! Enter your phone below to login.</string>
-	<string name="invalid_phone_number">Invalid phone number!</string>
-	<string name="sms_verification_description">We have sent you a SMS. Please enter the received code inside SMS in the box below.</string>
+    <!-- Resources for Bank2LogInActivity -->
+    <string name="don_t_have_an_account_sign_up">Don’t have an account? Sign Up</string>
+    <string name="welcom_login_below_with_phone">Welcome! Enter your phone below to login.</string>
+    <string name="invalid_phone_number">Invalid phone number!</string>
+    <string name="sms_verification_description">We have sent you a SMS. Please enter the received code inside SMS in the box below.</string>
+    <string name="fill_the_profile">Please tell us your gender and age, then press the submit button.</string>
+    <string name="title_activity_profile_completion">ProfileCompletionActivity</string>
+    <string name="invalid_age">Invalid age has been given!</string>
+    <string name="gender_not_selected">Please select a gender!</string>
+    <string name="invalid_gender_radio_button_id">Invalid gender radio button id is seleted!</string>
 </resources>

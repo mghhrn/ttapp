@@ -1,8 +1,8 @@
 package io.github.mghhrn.tin;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +15,7 @@ import io.github.mghhrn.tin.dto.SmsVerificationDto;
 import io.github.mghhrn.tin.dto.TokenDto;
 import io.github.mghhrn.tin.network.BackendClientSingleton;
 import io.github.mghhrn.tin.network.BackendService;
+import io.github.mghhrn.tin.util.SharedPreferencesUtil;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -36,11 +37,9 @@ public class SmsVerificationActivity extends AppCompatActivity {
 
     private void init() {
         backendService = BackendClientSingleton.getRetrofitInstance().create(BackendService.class);
-        verifyButton = this.findViewById(R.id.verify_sms_button);
-        verifyButton.setOnClickListener((view) -> {
-            this.onVerifyButtonPressed();
-        });
-        smsCodeEditText = this.findViewById(R.id.sms_code_edit_text);
+        verifyButton = this.findViewById(R.id.submit_profile_button);
+        verifyButton.setOnClickListener(v -> this.onVerifyButtonPressed());
+        smsCodeEditText = this.findViewById(R.id.age_edit_text);
     }
 
     private void onVerifyButtonPressed() {
@@ -57,6 +56,14 @@ public class SmsVerificationActivity extends AppCompatActivity {
             public void onResponse(Call<TokenDto> call, Response<TokenDto> response) {
                 //call next Activity
                 Toast.makeText(context, "Verification was successful!", Toast.LENGTH_SHORT).show();
+                TokenDto tokenDto = response.body();
+                SharedPreferencesUtil.saveTokenData(context, tokenDto);
+                if (tokenDto.getHasCompletedProfile()) {
+                    // todo: go to begin activity
+                } else {
+                    Intent intent = new Intent(context, ProfileCompletionActivity.class);
+                    startActivity(intent);
+                }
             }
 
             @Override

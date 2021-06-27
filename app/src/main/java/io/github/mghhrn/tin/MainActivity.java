@@ -39,9 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Configure Button component
         buttonTwoButton = this.findViewById(R.id.login_button);
-        buttonTwoButton.setOnClickListener((view) -> {
-            this.onLoginButtonPressed();
-        });
+        buttonTwoButton.setOnClickListener(v -> this.onLoginButtonPressed());
 
         phoneNumberEditText = this.findViewById(R.id.phone_number_edit_text);
     }

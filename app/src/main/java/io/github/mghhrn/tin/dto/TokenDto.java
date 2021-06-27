@@ -15,4 +15,27 @@ public class TokenDto {
 
     @SerializedName("userId")
     private Long userId;
+
+    @SerializedName("hasCompletedProfile")
+    private Boolean hasCompletedProfile;
+
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    public String getRefreshToken() {
+        return refreshToken;
+    }
+
+    public Long getExpiresInMinutes() {
+        return expiresInMinutes;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public Boolean getHasCompletedProfile() {
+        return hasCompletedProfile;
+    }
 }

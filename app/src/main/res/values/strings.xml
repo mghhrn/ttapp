@@ -6,6 +6,7 @@
     <!-- Resources for Bank2LogInActivity -->
     <string name="don_t_have_an_account_sign_up">Don’t have an account? Sign Up</string>
     <string name="welcom_login_below_with_phone">Welcome! Enter your phone below to login.</string>
+    <string name="ready_for_new_session">Are you ready for a new session?</string>
     <string name="invalid_phone_number">Invalid phone number!</string>
     <string name="sms_verification_description">We have sent you a SMS. Please enter the received code inside SMS in the box below.</string>
     <string name="fill_the_profile">Please tell us your gender and age, then press the submit button.</string>

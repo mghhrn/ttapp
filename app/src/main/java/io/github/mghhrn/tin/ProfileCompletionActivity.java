@@ -1,6 +1,7 @@
 package io.github.mghhrn.tin;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -78,7 +79,10 @@ public class ProfileCompletionActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 Toast.makeText(context, "Profile updated successfully!", Toast.LENGTH_SHORT).show();
-                // todo: go to begin activity
+                SharedPreferencesUtil.setProfileCompleted(context);
+                Intent intent = new Intent(context, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
 
             @Override

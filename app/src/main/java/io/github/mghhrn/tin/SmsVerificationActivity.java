@@ -30,7 +30,7 @@ public class SmsVerificationActivity extends AppCompatActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sms_verification_view);
+        setContentView(R.layout.activity_sms_verification);
         userCellphone = getIntent().getExtras().getString("cellphone");
         init();
     }
@@ -59,7 +59,10 @@ public class SmsVerificationActivity extends AppCompatActivity {
                 TokenDto tokenDto = response.body();
                 SharedPreferencesUtil.saveTokenData(context, tokenDto);
                 if (tokenDto.getHasCompletedProfile()) {
-                    // todo: go to begin activity
+                    SharedPreferencesUtil.setProfileCompleted(context);
+                    Intent intent = new Intent(context, MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
                 } else {
                     Intent intent = new Intent(context, ProfileCompletionActivity.class);
                     startActivity(intent);

@@ -1,11 +1,16 @@
 <resources>
-	
-	<!-- Project level resources -->
-	<color name="color_click_overlay">#555555</color>
-	<color name="color_primary_dark">#000000</color>
+
+    <!-- Project level resources -->
+    <color name="color_click_overlay">#555555</color>
+    <color name="color_primary_dark">#000000</color>
     <color name="color_primary">#000000</color>
-	<color name="color_accent">#000000</color>
+    <color name="color_accent">#000000</color>
 
     <!-- Resources for Bank2LogInActivity -->
     <color name="bank2_log_in_activity_button_button_background_color">#EFF2F6</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="light_blue_900">#FF01579B</color>
+    <color name="light_blue_A200">#FF40C4FF</color>
+    <color name="light_blue_A400">#FF00B0FF</color>
+    <color name="black_overlay">#66000000</color>
 </resources>

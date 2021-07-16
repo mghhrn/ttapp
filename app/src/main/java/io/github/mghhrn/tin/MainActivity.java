@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void onLetsGoButtonPressed() {
-        Toast.makeText(this, "The button is pressed!", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, FrequencySelectionActivity.class);
+        startActivity(intent);
     }
 }

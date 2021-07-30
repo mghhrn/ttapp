@@ -10,6 +10,7 @@
     <string name="invalid_phone_number">Invalid phone number!</string>
     <string name="sms_verification_description">We have sent you a SMS. Please enter the received code inside SMS in the box below.</string>
     <string name="fill_the_profile">Please tell us your gender and age, then press the submit button.</string>
+    <string name="before_session_description">Before we can play the specific audio for you, please select the duration of session and audio balance.</string>
     <string name="title_activity_profile_completion">ProfileCompletionActivity</string>
     <string name="invalid_age">Invalid age has been given!</string>
     <string name="gender_not_selected">Please select a gender!</string>

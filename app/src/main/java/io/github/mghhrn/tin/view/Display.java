@@ -69,6 +69,10 @@ public class Display extends SiggenView
         invalidate();
     }
 
+    public double getFrequency() {
+        return frequency;
+    }
+
     // On draw
     @Override
     protected void onDraw(Canvas canvas)

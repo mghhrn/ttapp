@@ -1,16 +1,21 @@
 package io.github.mghhrn.tin;
 
 import android.animation.ValueAnimator;
+import android.content.Intent;
 import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioTrack;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.view.View;
+import android.widget.Button;
 import android.widget.SeekBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import io.github.mghhrn.tin.database.AppDatabaseSingleton;
+import io.github.mghhrn.tin.entity.TherapySession;
+import io.github.mghhrn.tin.util.SharedPreferencesUtil;
 import io.github.mghhrn.tin.view.Display;
 import io.github.mghhrn.tin.view.Knob;
 
@@ -23,6 +28,7 @@ public class FrequencySelectionActivity extends AppCompatActivity implements Kno
     private Knob knob;
     private Display display;
     private SeekBar fine;
+    private Button nextButton;
     private PowerManager.WakeLock wakeLock;
 
     private static final String LOCK = "Tin:lock";
@@ -33,6 +39,7 @@ public class FrequencySelectionActivity extends AppCompatActivity implements Kno
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_frequency_selection);
 
+        nextButton = findViewById(R.id.next_button);
         knob = findViewById(R.id.knob);
         display = findViewById(R.id.display);
         fine = findViewById(R.id.fine);
@@ -43,6 +50,8 @@ public class FrequencySelectionActivity extends AppCompatActivity implements Kno
 
         audio = new Audio();
         audio.start();
+
+        nextButton.setOnClickListener(v -> this.onNextButtonPressed());
 
         setupWidgets();
     }
@@ -160,14 +169,31 @@ public class FrequencySelectionActivity extends AppCompatActivity implements Kno
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {}
 
+
     // Not Used
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {}
 
 
+    private void onNextButtonPressed() {
+        TherapySession therapySession = instantiateTherapySession(display.getFrequency());
+        AppDatabaseSingleton.getInstance(this).therapySessionDao().insert(therapySession);
+        Intent intent = new Intent(this, BeforeSessionActivity.class);
+        intent.putExtra("selectedFrequency", display.getFrequency());
+        intent.putExtra("therapySessionId", therapySession.getId());
+        startActivity(intent);
+    }
+
+    private TherapySession instantiateTherapySession(double frequency) {
+        TherapySession session = new TherapySession();
+        session.setUserId(SharedPreferencesUtil.loadUserId(this));
+        session.setSelectedFrequency(frequency);
+        return session;
+    }
+
+
     // Audio
-    protected class Audio implements Runnable
-    {
+    protected class Audio implements Runnable {
         protected static final int SINE = 0;
 
 //        protected int waveform;
@@ -180,22 +206,19 @@ public class FrequencySelectionActivity extends AppCompatActivity implements Kno
 
         private AudioTrack audioTrack;
 
-        protected Audio()
-        {
+        protected Audio() {
             frequency = 440.0;
             level = 16384;
         }
 
         // Start
-        protected void start()
-        {
+        protected void start() {
             thread = new Thread(this, "Audio");
             thread.start();
         }
 
         // Stop
-        protected void stop()
-        {
+        protected void stop() {
             Thread t = thread;
             thread = null;
 
@@ -204,15 +227,13 @@ public class FrequencySelectionActivity extends AppCompatActivity implements Kno
                 Thread.yield();
         }
 
-        public void run()
-        {
+        public void run() {
             processAudio();
         }
 
         // Process audio
         @SuppressWarnings("deprecation")
-        protected void processAudio()
-        {
+        protected void processAudio() {
             short buffer[];
 
             int rate =
@@ -225,10 +246,8 @@ public class FrequencySelectionActivity extends AppCompatActivity implements Kno
             int sizes[] = {1024, 2048, 4096, 8192, 16384, 32768};
             int size = 0;
 
-            for (int s : sizes)
-            {
-                if (s > minSize)
-                {
+            for (int s : sizes) {
+                if (s > minSize) {
                     size = s;
                     break;
                 }
@@ -240,14 +259,14 @@ public class FrequencySelectionActivity extends AppCompatActivity implements Kno
             audioTrack = new AudioTrack(AudioManager.STREAM_MUSIC, rate,
                     AudioFormat.CHANNEL_OUT_MONO,
                     AudioFormat.ENCODING_PCM_16BIT,
-                    size, AudioTrack.MODE_STREAM);
+                    size,
+                    AudioTrack.MODE_STREAM);
             // Check audioTrack
 
             // Check state
             int state = audioTrack.getState();
 
-            if (state != AudioTrack.STATE_INITIALIZED)
-            {
+            if (state != AudioTrack.STATE_INITIALIZED) {
                 audioTrack.release();
                 return;
             }
@@ -268,7 +287,7 @@ public class FrequencySelectionActivity extends AppCompatActivity implements Kno
                 for (int i = 0; i < buffer.length; i++)
                 {
                     f += (frequency - f) / 4096.0;
-                    l += ((false ? 0.0 : level) * 16384.0 - l) / 4096.0;
+                    l += (level * 16384.0 - l) / 4096.0;
                     q += (q < Math.PI) ? f * K : (f * K) - (2.0 * Math.PI);
 
                     buffer[i] = (short) Math.round(Math.sin(q) * l);

@@ -40,6 +40,11 @@ public class SharedPreferencesUtil {
         return sharedPreferences.getString(REFRESH_TOKEN_KEY, null);
     }
 
+    public static Long loadUserId(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE);
+        return sharedPreferences.getLong(USER_ID, 0L);
+    }
+
     public static boolean isProfileCompleted(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE);
         return sharedPreferences.getBoolean(PROFILE_COMPLETED, false);

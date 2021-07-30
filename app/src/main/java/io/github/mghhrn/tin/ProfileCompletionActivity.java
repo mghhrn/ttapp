@@ -40,7 +40,7 @@ public class ProfileCompletionActivity extends AppCompatActivity {
 
     private void onSubmitButtonPressed() {
         String ageString = ageEditText.getText().toString();
-        if (ageString == null) {
+        if (ageString == null || ageString.equals("")) {
             Toast.makeText(this, R.string.invalid_age, Toast.LENGTH_SHORT).show();
             return;
         }

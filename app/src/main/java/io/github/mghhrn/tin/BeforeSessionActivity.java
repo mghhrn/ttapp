@@ -74,11 +74,14 @@ public class BeforeSessionActivity extends AppCompatActivity {
         session.setFilteredRange(filteredRange);
         session.setStartedAt(new Date());
         AppDatabaseSingleton.getInstance(this).therapySessionDao().update(session);
-
-        // todo: uncomment after implementing the TherapySessionActivity
-//        Intent intent = new Intent(this, TherapySessionActivity.class);
-//        intent.putExtra("therapySessionId", therapySessionId);
-//        startActivity(intent);
+        
+        Intent intent = new Intent(this, TherapySessionActivity.class);
+        intent.putExtra("therapySessionId", therapySessionId);
+        intent.putExtra("duration", duration);
+        intent.putExtra("filteredRange", filteredRange);
+        intent.putExtra("selectedFrequency", selectedFrequency);
+        intent.putExtra("selectedBalance", selectedBalance);
+        startActivity(intent);
     }
 
     private void onNumberPickerValueChanged(NumberPicker numberPicker, int i, int i1) {

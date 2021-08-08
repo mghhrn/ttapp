@@ -49,6 +49,6 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$room_version"
 
     //JTransforms
-    implementation "com.github.wendykierp:JTransforms:3.1:with-dependencies"
+    implementation "com.github.wendykierp:JTransforms:3.1"
 
 }

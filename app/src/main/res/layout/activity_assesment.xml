@@ -31,14 +31,14 @@
 
 
                 <Button
-                    android:id="@+id/start_session_button"
+                    android:id="@+id/final_submit_button"
                     android:layout_width="295dp"
                     android:layout_height="46dp"
                     android:layout_marginTop="40dp"
                     android:background="@drawable/bank2_log_in_activity_button_two_button_ripple"
                     android:fontFamily="@font/font_opensans_semibold"
                     android:gravity="center"
-                    android:text="Start Session"
+                    android:text="Submit"
                     android:textColor="#FFFFFF"
                     android:textSize="13sp"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -55,7 +55,7 @@
                     android:fontFamily="@font/font_opensans_light"
                     android:gravity="start"
                     android:lineSpacingMultiplier="1.5"
-                    android:text="@string/before_session_description"
+                    android:text="@string/how_do_you_feel"
                     android:textColor="#19224C"
                     android:textSize="20sp"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -67,73 +67,56 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/inputs_constraint_layout"
                     android:layout_width="295dp"
-                    android:layout_height="130dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="170dp"
+                    android:layout_marginTop="20dp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/evaluate_message">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/duration"
-                        android:layout_width="0dp"
-                        android:layout_height="77dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintHorizontal_weight="1"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <NumberPicker
-                            android:id="@+id/duration_number_picker"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"/>
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="9dp"
-                        app:layout_constraintTop_toBottomOf="@+id/duration">
-
                         <RadioGroup
-                            android:id="@+id/balance_radio_group"
+                            android:id="@+id/score_radio_group"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="horizontal"
+                            android:gravity="left"
+                            android:orientation="vertical"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
 
                             <RadioButton
-                                android:id="@+id/left"
+                                android:id="@+id/great"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Left"
+                                android:text="Great"
                                 android:textSize="15dp" />
 
                             <RadioButton
-                                android:id="@+id/left_right"
+                                android:id="@+id/good"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="7dp"
-                                android:layout_marginRight="7dp"
-                                android:text="Left+Right"
+                                android:text="Good"
                                 android:textSize="15dp" />
 
                             <RadioButton
-                                android:id="@+id/right"
+                                android:id="@+id/soso"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Right"
+                                android:text="So So"
+                                android:textSize="15dp" />
+
+                            <RadioButton
+                                android:id="@+id/bad"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Bad"
+                                android:textSize="15dp" />
+
+                            <RadioButton
+                                android:id="@+id/awful"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Awful"
                                 android:textSize="15dp" />
                         </RadioGroup>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -159,7 +142,7 @@
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="59dp"
                 android:gravity="start"
-                android:text="Session Parameters"
+                android:text="Assesment"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
                 app:layout_constraintLeft_toLeftOf="parent"

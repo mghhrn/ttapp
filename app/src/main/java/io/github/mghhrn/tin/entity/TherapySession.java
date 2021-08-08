@@ -9,8 +9,8 @@ import java.util.Date;
 @Entity(tableName = "therapy_session")
 public class TherapySession {
 
-    @PrimaryKey
-    public long id;
+    @PrimaryKey(autoGenerate = true)
+    public int id;
 
     @ColumnInfo(name = "selected_frequency")
     private double selectedFrequency;
@@ -42,11 +42,24 @@ public class TherapySession {
 
     public TherapySession() {}
 
-    public long getId() {
+    public TherapySession(int id, double selectedFrequency, int filteredRange, String audioBalance, int duration, Date startedAt, int volume, long userId, int satisfactionPoint, boolean sentToServer) {
+        this.id = id;
+        this.selectedFrequency = selectedFrequency;
+        this.filteredRange = filteredRange;
+        this.audioBalance = audioBalance;
+        this.duration = duration;
+        this.startedAt = startedAt;
+        this.volume = volume;
+        this.userId = userId;
+        this.satisfactionPoint = satisfactionPoint;
+        this.sentToServer = sentToServer;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

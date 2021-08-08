@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".BeforeSessionActivity"></activity>
+        <activity android:name=".AssesmentActivity"></activity>
+        <activity android:name=".TherapySessionActivity" />
+        <activity android:name=".BeforeSessionActivity" />
         <activity
             android:name=".FrequencySelectionActivity"
             android:label="@string/title_activity_frequency_selection"

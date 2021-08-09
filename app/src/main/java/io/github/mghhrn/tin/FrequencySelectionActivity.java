@@ -210,7 +210,7 @@ public class FrequencySelectionActivity extends AppCompatActivity implements Kno
 
         protected Audio() {
             frequency = 440.0;
-            level = 16384;
+            level = 1.0;
         }
 
         // Start

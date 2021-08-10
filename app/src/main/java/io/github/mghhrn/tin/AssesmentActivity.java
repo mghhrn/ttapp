@@ -25,6 +25,7 @@ public class AssesmentActivity extends AppCompatActivity {
     private RadioGroup scoreRadioGroup;
     private Button finalSubmitButton;
     private long therapySessionId;
+    private int volume;
     private BackendService backendService;
 
     @Override
@@ -33,6 +34,7 @@ public class AssesmentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_assesment);
 
         therapySessionId = getIntent().getExtras().getLong("therapySessionId");
+        volume = getIntent().getExtras().getInt("volume");
 
         scoreRadioGroup = findViewById(R.id.score_radio_group);
         finalSubmitButton = findViewById(R.id.final_submit_button);
@@ -73,6 +75,7 @@ public class AssesmentActivity extends AppCompatActivity {
 
         TherapySession session = AppDatabaseSingleton.getInstance(this).therapySessionDao().findById(therapySessionId);
         session.setSatisfactionPoint(satisfactionPoint);
+        session.setVolume(volume);
         AppDatabaseSingleton.getInstance(this).therapySessionDao().update(session);
 
         TherapySessionDto dto = new TherapySessionDto();

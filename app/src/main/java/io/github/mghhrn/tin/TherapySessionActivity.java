@@ -36,15 +36,18 @@ public class TherapySessionActivity extends AppCompatActivity {
     private int duration;
     private int filteredRange;
     private String selectedBalance;
+    private int volume;
     private Context context;
     private AudioTrack audioTrack;
     private short[] finalAudioBuffer;
     private File resultFile;
+    private AudioManager audioManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_therapy_session);
+        audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
 
         therapySessionId = getIntent().getExtras().getLong("therapySessionId");
         selectedFrequency = getIntent().getExtras().getDouble("selectedFrequency");
@@ -157,6 +160,7 @@ public class TherapySessionActivity extends AppCompatActivity {
                 Long remainingSeconds = totalRemainingSeconds % 60;
                 minuteTextView.setText(remainingMinutes.toString());
                 secondTextView.setText(remainingSeconds.toString());
+                volume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
             }
 
             @Override
@@ -169,6 +173,7 @@ public class TherapySessionActivity extends AppCompatActivity {
                 resultFile.delete();
                 Intent intent = new Intent(context, AssesmentActivity.class);
                 intent.putExtra("therapySessionId", therapySessionId);
+                intent.putExtra("volume", volume);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 finish();

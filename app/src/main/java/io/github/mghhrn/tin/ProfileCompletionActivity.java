@@ -82,6 +82,7 @@ public class ProfileCompletionActivity extends AppCompatActivity {
                 Intent intent = new Intent(context, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
+                finish();
             }
 
             @Override

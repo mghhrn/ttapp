@@ -67,6 +67,7 @@ public class SmsVerificationActivity extends AppCompatActivity {
                     Intent intent = new Intent(context, ProfileCompletionActivity.class);
                     startActivity(intent);
                 }
+                finish();
             }
 
             @Override

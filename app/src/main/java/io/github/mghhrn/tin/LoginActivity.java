@@ -58,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(context, SmsVerificationActivity.class);
                 intent.putExtra("cellphone", cellphone);
                 startActivity(intent);
+                finish();
             }
 
             @Override

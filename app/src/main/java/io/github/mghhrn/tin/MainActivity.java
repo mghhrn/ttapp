@@ -42,5 +42,6 @@ public class MainActivity extends AppCompatActivity {
     private void onLetsGoButtonPressed() {
         Intent intent = new Intent(this, FrequencySelectionActivity.class);
         startActivity(intent);
+        finish();
     }
 }

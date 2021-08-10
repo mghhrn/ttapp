@@ -63,11 +63,9 @@ public class TherapySessionActivity extends AppCompatActivity {
             try (OutputStream output = new FileOutputStream(file)) {
                 byte[] buffer = new byte[4 * 1024]; // or other buffer size
                 int read;
-
                 while ((read = wafFileInputStream.read(buffer)) != -1) {
                     output.write(buffer, 0, read);
                 }
-
                 output.flush();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -95,7 +93,6 @@ public class TherapySessionActivity extends AppCompatActivity {
             fft.realInverse(buffer, true);
             File outputDir = context.getCacheDir();
             resultFile = File.createTempFile("cached_filtered", ".wav", outputDir);
-//            File resultFile = new File(getCacheDir(), "cached_filtered.wav");
             WavFile outFile = WavFile.newWavFile(resultFile, 1, wavFile.getNumFrames()/2, 16, wavFile.getSampleRate());
             outFile.writeFrames(buffer, numberOfFrames/2);
             outFile.close();
@@ -128,6 +125,20 @@ public class TherapySessionActivity extends AppCompatActivity {
                         finalAudioBuffer.length,
                         AudioTrack.MODE_STREAM);
                 audioTrack.play();
+                switch (selectedBalance) {
+                    case "LEFT":
+                        audioTrack.setStereoVolume(1, 0);
+                        break;
+                    case "RIGHT":
+                        audioTrack.setStereoVolume(0, 1);
+                        break;
+                    case "BOTH":
+                        audioTrack.setStereoVolume(1, 1);
+                        break;
+                    default:
+                        audioTrack.setStereoVolume(1, 1);
+                        Toast.makeText(context, "unknown selected balance!", Toast.LENGTH_SHORT);
+                }
                 while (continuePlaying) {
                     audioTrack.write(finalAudioBuffer, 0, finalAudioBuffer.length);
                 }
@@ -160,6 +171,7 @@ public class TherapySessionActivity extends AppCompatActivity {
                 intent.putExtra("therapySessionId", therapySessionId);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
+                finish();
             }
         }.start();
     }

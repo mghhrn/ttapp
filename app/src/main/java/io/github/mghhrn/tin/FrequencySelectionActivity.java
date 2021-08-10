@@ -180,10 +180,10 @@ public class FrequencySelectionActivity extends AppCompatActivity implements Kno
         long sessionRowId = AppDatabaseSingleton.getInstance(this).therapySessionDao().insert(therapySession);
         Intent intent = new Intent(this, BeforeSessionActivity.class);
         intent.putExtra("selectedFrequency", display.getFrequency());
-//        intent.putExtra("therapySessionId", therapySession.getId());
         intent.putExtra("therapySessionId", sessionRowId);
         audio.stop();
         startActivity(intent);
+        finish();
     }
 
     private TherapySession instantiateTherapySession(double frequency) {

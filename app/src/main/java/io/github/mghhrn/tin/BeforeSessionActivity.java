@@ -82,6 +82,7 @@ public class BeforeSessionActivity extends AppCompatActivity {
         intent.putExtra("selectedFrequency", selectedFrequency);
         intent.putExtra("selectedBalance", selectedBalance);
         startActivity(intent);
+        finish();
     }
 
     private void onNumberPickerValueChanged(NumberPicker numberPicker, int i, int i1) {

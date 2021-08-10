@@ -1,13 +1,13 @@
 package io.github.mghhrn.tin;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Date;
 
@@ -22,7 +22,7 @@ public class BeforeSessionActivity extends AppCompatActivity {
     private int duration = 1;
     private long therapySessionId;
     private double selectedFrequency;
-    private int filteredRange = 2000; // Hz
+    public static int FILTERED_RANGE = 2000; // Hz
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,14 +71,14 @@ public class BeforeSessionActivity extends AppCompatActivity {
         TherapySession session = AppDatabaseSingleton.getInstance(this).therapySessionDao().findById(therapySessionId);
         session.setAudioBalance(selectedBalance);
         session.setDuration(duration);
-        session.setFilteredRange(filteredRange);
+        session.setFilteredRange(FILTERED_RANGE);
         session.setStartedAt(new Date());
         AppDatabaseSingleton.getInstance(this).therapySessionDao().update(session);
         
         Intent intent = new Intent(this, TherapySessionActivity.class);
         intent.putExtra("therapySessionId", therapySessionId);
         intent.putExtra("duration", duration);
-        intent.putExtra("filteredRange", filteredRange);
+        intent.putExtra("filteredRange", FILTERED_RANGE);
         intent.putExtra("selectedFrequency", selectedFrequency);
         intent.putExtra("selectedBalance", selectedBalance);
         startActivity(intent);

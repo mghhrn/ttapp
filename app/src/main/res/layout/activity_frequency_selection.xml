@@ -63,6 +63,7 @@
         android:layout_below="@id/lower"
         android:layout_alignRight="@id/display"
         android:layout_alignLeft="@+id/display"
+        android:layout_width="wrap_content"
         android:layout_height="46dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/bank2_log_in_activity_button_two_button_ripple"

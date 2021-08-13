@@ -50,30 +50,36 @@ public class SmsVerificationActivity extends AppCompatActivity {
         }
         SmsVerificationDto dto = new SmsVerificationDto(userCellphone, verificationCode);
         Call<TokenDto> tokenDtoCall = backendService.verifySms(dto);
+        verifyButton.setEnabled(false);
         tokenDtoCall.enqueue(new Callback<TokenDto>() {
             private Context context = getContext();
             @Override
             public void onResponse(Call<TokenDto> call, Response<TokenDto> response) {
-                //call next Activity
-                Toast.makeText(context, "Verification was successful!", Toast.LENGTH_SHORT).show();
-                TokenDto tokenDto = response.body();
-                SharedPreferencesUtil.saveTokenData(context, tokenDto);
-                if (tokenDto.getHasCompletedProfile()) {
-                    SharedPreferencesUtil.setProfileCompleted(context);
-                    Intent intent = new Intent(context, MainActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
+                if (response.isSuccessful()) {
+                    Toast.makeText(context, "Verification was successful!", Toast.LENGTH_SHORT).show();
+                    TokenDto tokenDto = response.body();
+                    SharedPreferencesUtil.saveTokenData(context, tokenDto);
+                    if (tokenDto.getHasCompletedProfile()) {
+                        SharedPreferencesUtil.setProfileCompleted(context);
+                        Intent intent = new Intent(context, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                    } else {
+                        Intent intent = new Intent(context, ProfileCompletionActivity.class);
+                        startActivity(intent);
+                    }
+                    finish();
                 } else {
-                    Intent intent = new Intent(context, ProfileCompletionActivity.class);
-                    startActivity(intent);
+                    Toast.makeText(context, "Server sent an error!", Toast.LENGTH_SHORT).show();
+                    verifyButton.setEnabled(true);
                 }
-                finish();
             }
 
             @Override
             public void onFailure(Call<TokenDto> call, Throwable t) {
                 Log.e("sms-verification", t.getMessage());
                 Toast.makeText(context, "OMG! Something went wrong!", Toast.LENGTH_SHORT).show();
+                verifyButton.setEnabled(true);
             }
         });
     }

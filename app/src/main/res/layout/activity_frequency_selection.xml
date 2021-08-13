@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/display"
         android:layout_alignLeft="@id/display"
-        android:layout_alignParentRight="true"
+        android:layout_alignRight="@id/display"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="8dp" />
 
@@ -61,9 +61,8 @@
     <Button
         android:id="@+id/next_button"
         android:layout_below="@id/lower"
-        android:layout_alignParentRight="true"
-        android:layout_alignLeft="@+id/lower"
-        android:layout_width="295dp"
+        android:layout_alignRight="@id/display"
+        android:layout_alignLeft="@+id/display"
         android:layout_height="46dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/bank2_log_in_activity_button_two_button_ripple"

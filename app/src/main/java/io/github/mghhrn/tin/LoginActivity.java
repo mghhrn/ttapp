@@ -48,23 +48,30 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.invalid_phone_number, Toast.LENGTH_SHORT).show();
             return;
         }
+        buttonTwoButton.setEnabled(false);
         LoginDto loginDto = new LoginDto(cellphone);
         Call<Void> call = backendService.login(loginDto);
         call.enqueue(new Callback<Void>() {
             private Context context = getContext();
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Toast.makeText(context, "Request was successful!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(context, SmsVerificationActivity.class);
-                intent.putExtra("cellphone", cellphone);
-                startActivity(intent);
-                finish();
+                if (response.isSuccessful()) {
+                    Toast.makeText(context, "Request was successful!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(context, SmsVerificationActivity.class);
+                    intent.putExtra("cellphone", cellphone);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(context, "Server responded with an error!", Toast.LENGTH_SHORT).show();
+                    buttonTwoButton.setEnabled(true);
+                }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 Log.e("login", t.getMessage());
                 Toast.makeText(context, "OMG! Something went wrong!", Toast.LENGTH_SHORT).show();
+                buttonTwoButton.setEnabled(true);
             }
         });
     }

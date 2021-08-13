@@ -50,6 +50,7 @@ public class AssesmentActivity extends AppCompatActivity {
             scoreRadioGroup.clearCheck();
             return;
         }
+        finalSubmitButton.setEnabled(false);
         int satisfactionPoint;
         switch (scoreButtonId) {
             case R.id.great:
@@ -88,7 +89,6 @@ public class AssesmentActivity extends AppCompatActivity {
         dto.setVolume(session.getVolume());
         String authorizationHeader = "Bearer " + SharedPreferencesUtil.loadAccessToken(this);
         Call<Void> call = backendService.sendTherapySessions(authorizationHeader, Collections.singletonList(dto));
-        finalSubmitButton.setEnabled(false);
 
         call.enqueue(new Callback<Void>() {
             @Override

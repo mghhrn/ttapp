@@ -10,65 +10,81 @@
     tools:ignore="RtlHardcoded"
     android:keepScreenOn="true">
 
-    <io.github.mghhrn.tin.view.Display
-        android:id="@+id/display"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="8dp"
-        app:BackgroundColour="?android:attr/colorBackground"
-        app:TextColour="?android:attr/textColorPrimary" />
-
     <io.github.mghhrn.tin.view.Knob
         android:id="@+id/knob"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
         app:BackgroundColour="?android:attr/colorBackground"
         app:TextColour="?android:attr/textColorPrimary" />
 
-    <SeekBar
-        android:id="@+id/fine"
+    <RelativeLayout
+        android:id="@+id/right_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/display"
-        android:layout_alignLeft="@id/display"
-        android:layout_alignRight="@id/display"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="8dp" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/knob"
+        android:layout_centerVertical="true"
+        android:gravity="center">
 
-    <ImageButton
-        android:id="@+id/higher"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/fine"
-        android:layout_alignRight="@id/display"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/ic_action_next_item"
-        tools:ignore="ContentDescription" />
+        <io.github.mghhrn.tin.view.Display
+            android:id="@+id/display"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="8dp"
+            app:BackgroundColour="?android:attr/colorBackground"
+            app:TextColour="?android:attr/textColorPrimary" />
 
-    <ImageButton
-        android:id="@+id/lower"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/fine"
-        android:layout_alignLeft="@id/display"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/ic_action_previous_item"
-        tools:ignore="ContentDescription" />
+        <SeekBar
+            android:id="@+id/fine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/display"
+            android:layout_alignLeft="@id/display"
+            android:layout_alignRight="@id/display"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="8dp" />
 
-    <Button
-        android:id="@+id/next_button"
-        android:layout_below="@id/lower"
-        android:layout_alignRight="@id/display"
-        android:layout_alignLeft="@+id/display"
-        android:layout_width="wrap_content"
-        android:layout_height="46dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/bank2_log_in_activity_button_two_button_ripple"
-        android:fontFamily="@font/font_opensans_semibold"
-        android:text="Next"
-        android:textColor="#FFFFFF"
-        android:textSize="13sp" />
+        <ImageButton
+            android:id="@+id/higher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fine"
+            android:layout_alignRight="@id/display"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_action_next_item"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:id="@+id/lower"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fine"
+            android:layout_alignLeft="@id/display"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_action_previous_item"
+            tools:ignore="ContentDescription" />
+
+        <Button
+            android:id="@+id/next_button"
+            android:layout_below="@id/lower"
+            android:layout_alignRight="@id/display"
+            android:layout_alignLeft="@+id/display"
+            android:layout_width="wrap_content"
+            android:layout_height="46dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/bank2_log_in_activity_button_two_button_ripple"
+            android:fontFamily="@font/font_opensans_semibold"
+            android:text="Next"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp" />
+
+    </RelativeLayout>
+
 </RelativeLayout>
